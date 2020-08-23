@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import Cam from "./screens/Cam.js";
+import Input from "./screens/Input";
+import Song from "./screens/Song";
+import Favorite from "./screens/Favorites";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// You can import from local files
+import AssetExample from "./components/AssetExample";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+// or any pure javascript modules available in npm
+import { Card } from "react-native-paper";
+
+const App = createStackNavigator({
+  InputScreen: { screen: Input },
+  CameraScreen: { screen: Cam },
+  SongScreen: { screen: Song },
+  FavoriteScreen: { screen: Favorite },
 });
+
+export default createAppContainer(App);
